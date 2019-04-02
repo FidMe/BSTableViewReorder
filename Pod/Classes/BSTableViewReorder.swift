@@ -59,7 +59,7 @@ open class BSTableViewReorder: UITableView, UIScrollViewDelegate {
         }
     }
     
-    private var state: UIGestureRecognizerState {
+    private var state: UIGestureRecognizer.State {
         
         get {
             return longPressGestureRecognizer.state
@@ -221,7 +221,7 @@ open class BSTableViewReorder: UITableView, UIScrollViewDelegate {
     
     //MARK: - Internal
     
-    func longPressed() {
+    @objc func longPressed() {
         
         if let tableViewCanReorder = reorderDelegate?.tableViewCanReorder , !tableViewCanReorder {
             return
@@ -256,7 +256,7 @@ open class BSTableViewReorder: UITableView, UIScrollViewDelegate {
                 reorderDelegate?.tableViewDidStartLongPress?(gestureRecognizer: longPressGestureRecognizer)
                 
                 scrollDisplayLink = CADisplayLink(target: self, selector: #selector(scrollTable))
-                scrollDisplayLink?.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
+                scrollDisplayLink?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
                 cellForCurrentIndexPath?.isHidden = true
             }
             
@@ -308,7 +308,7 @@ open class BSTableViewReorder: UITableView, UIScrollViewDelegate {
         }
     }
     
-    func scrollTable() {
+    @objc func scrollTable() {
         
         guard relativeLocation.y > 0 && relativeLocation.y <= contentSize.height + 50 else {
             return

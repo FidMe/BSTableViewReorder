@@ -93,8 +93,8 @@ class BSViewController: UIViewController, UITableViewDataSource, UITableViewDele
         var transform = CATransform3DIdentity
         transform.m34 = CGFloat(1.0 / -1000)
         
-        transform = CATransform3DRotate(transform, CGFloat(20*M_PI / 180), 0, 1, 0)
-        transform = CATransform3DRotate(transform, CGFloat(-15*M_PI / 180), 1, 0, 0)
+        transform = CATransform3DRotate(transform, CGFloat(20*Double.pi / 180), 0, 1, 0)
+        transform = CATransform3DRotate(transform, CGFloat(-15*Double.pi / 180), 1, 0, 0)
         transform = CATransform3DTranslate(transform, -20, 0, 100)
         
         return transform
